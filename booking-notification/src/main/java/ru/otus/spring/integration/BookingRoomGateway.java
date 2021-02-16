@@ -3,8 +3,8 @@ package ru.otus.spring.integration;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.messaging.handler.annotation.Payload;
-import ru.otus.spring.model.BookingNotificationReminder;
 import ru.otus.spring.model.BookingNotificationEvent;
+import ru.otus.spring.model.BookingNotificationReminder;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package ru.otus.spring.service;
 
 import lombok.experimental.UtilityClass;
-import ru.otus.spring.model.BookingNotificationReminder;
 import ru.otus.spring.model.BookingNotificationEvent;
+import ru.otus.spring.model.BookingNotificationReminder;
 import ru.otus.spring.model.Subscriber;
 
 import java.text.MessageFormat;

@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import ru.otus.spring.config.NotificationProperties;
-import ru.otus.spring.model.BookingNotificationReminder;
 import ru.otus.spring.model.BookingNotificationEvent;
+import ru.otus.spring.model.BookingNotificationReminder;
 import ru.otus.spring.model.Subscriber;
 
 import java.text.MessageFormat;

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.otus.spring.integration.BookingRoomGateway;
-import ru.otus.spring.model.BookingNotificationReminder;
 import ru.otus.spring.model.BookingNotificationEvent;
+import ru.otus.spring.model.BookingNotificationReminder;
 
 import java.util.List;
 
