@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Booking meeting rooms Application</title>
+</head>
+<body>
+
+<div th:insert="header.html"></div>
+
+<h2>Меню</h2>
+<a th:href="@{bookings}">Список броней</a>
+<br>
+<a th:href="@{rooms}">Переговорки</a>
+<br>
+<a th:href="@{profiles}">Профиль</a>
+<br>
+<a href="http://localhost:9003/swagger-ui.html" target="_blank">Управление пользователями</a>
+</body>
+</html>
