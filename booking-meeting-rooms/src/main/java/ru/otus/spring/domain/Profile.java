@@ -35,7 +35,7 @@ public class Profile {
     /**
      * Логин пользователя.
      */
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
 
     /**

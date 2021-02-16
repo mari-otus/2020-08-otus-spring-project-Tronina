@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 
 /**
@@ -24,7 +25,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "rooms")
+@Table(name = "rooms",
+        uniqueConstraints = @UniqueConstraint(name = "rooms_uk", columnNames = {"room_name", "delete_date"}))
 public class Room {
 
     /**

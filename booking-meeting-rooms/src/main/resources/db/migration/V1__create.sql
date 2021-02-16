@@ -17,7 +17,8 @@ create table rooms
     has_videoconference boolean   default false,
     create_date         timestamp default current_timestamp,
     update_date         timestamp,
-    delete_date         timestamp
+    delete_date         timestamp,
+    constraint rooms_uk unique (room_name, delete_date)
 );
 
 comment on table rooms is 'Переговорные комнаты';
@@ -43,6 +44,15 @@ create table bookings
     delete_date timestamp
 );
 
+comment on table bookings is 'Брони';
+comment on column bookings.room_id is 'Идентификатор комнаты';
+comment on column bookings.login is 'Логин пользователя';
+comment on column bookings.begin_date is 'Дата и время начала брони';
+comment on column bookings.end_date is 'Дата и время окончания брони';
+comment on column bookings.create_date is 'Дата создания записи';
+comment on column bookings.update_date is 'Дата обновления записи';
+comment on column bookings.delete_date is 'Дата удаления записи (брони)';
+
 alter table if exists bookings
     add constraint bookings_room_fk
         foreign key (room_id)
@@ -61,7 +71,8 @@ create table profiles
     email           text,
     mobile_phone    text,
     is_email_notify boolean default false,
-    is_phone_notify boolean default false
+    is_phone_notify boolean default false,
+    constraint profiles_uk unique (login)
 );
 
 comment on table profiles is 'Профиль пользователя';
@@ -71,19 +82,27 @@ comment on column profiles.is_email_notify is 'Оповещение по email';
 comment on column profiles.is_phone_notify is 'Оповещение по sms';
 
 ------------------------------
--- table: subscribings      --
+-- table: subscriptions     --
 ------------------------------
-create table subscribings
+create table subscriptions
 (
     id          bigserial
-        constraint subscribings_pk
+        constraint subscriptions_pk
             primary key,
     room_id     int       not null,
     login       text      not null,
     create_date timestamp default current_timestamp,
     update_date timestamp,
-    delete_date timestamp
+    delete_date timestamp,
+    constraint subscriptions_uk unique (room_id, login, delete_date)
 );
+
+comment on table subscriptions is 'Подписки';
+comment on column subscriptions.room_id is 'Идентификатор комнаты';
+comment on column subscriptions.login is 'Логин пользователя';
+comment on column subscriptions.create_date is 'Дата создания записи';
+comment on column subscriptions.update_date is 'Дата обновления записи';
+comment on column subscriptions.delete_date is 'Дата удаления записи (подписки)';
 
 alter table if exists subscribings
     add constraint subscribings_room_fk

@@ -15,7 +15,7 @@ import ru.otus.spring.dto.UserDto;
  */
 @RequiredArgsConstructor
 @Service
-public class DbUserDetailsService implements UserDetailsService {
+public class    DbUserDetailsService implements UserDetailsService {
     /**
      * Репозиторий для работы с пользователями.
      */

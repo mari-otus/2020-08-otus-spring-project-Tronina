@@ -40,6 +40,10 @@ create table roles
     description text
 );
 
+comment on table roles is 'Роли пользователей';
+comment on column roles.role is 'Роль';
+comment on column roles.description is 'Описание';
+
 ------------------------------
 -- table: users_role        --
 ------------------------------
@@ -52,6 +56,10 @@ create table users_role
     roles_id bigint not null
 );
 
+comment on table users_role is 'Пользователи и роли';
+comment on column users_role.users_id is 'Идентификатор пользователя';
+comment on column users_role.roles_id is 'Идентификатор роли';
+
 alter table users_role
     add constraint users_role_users_fk
         foreign key (users_id) references users
@@ -63,9 +71,9 @@ alter table users_role
             on update cascade on delete cascade;
 
 insert into users(id, login, password, fio, locked, account_expired, password_expired, enabled)
-values (1, 'admin', '$2a$10$E7CswtV8IX36w0iPW//rlu5ptkxvTrOZtVUEIWLQiFOUnQYfe3T42', 'Администратор Петров', false, null, null,
+values (1, 'admin', '$2a$10$E7CswtV8IX36w0iPW//rlu5ptkxvTrOZtVUEIWLQiFOUnQYfe3T42', 'Администратор', false, null, null,
         true),
-       (2, 'user', '$2a$10$E7CswtV8IX36w0iPW//rlu5ptkxvTrOZtVUEIWLQiFOUnQYfe3T42', 'Пользователь Иванов',
+       (2, 'user', '$2a$10$E7CswtV8IX36w0iPW//rlu5ptkxvTrOZtVUEIWLQiFOUnQYfe3T42', 'Пользователь Первый',
         false, null, null, true);
 
 insert into roles(id, role, description)

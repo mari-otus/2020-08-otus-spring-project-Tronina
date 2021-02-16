@@ -11,11 +11,11 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:5001/eureka
+      defaultZone: http://localhost:5002/eureka
       register-with-eureka: true
       fetch-registry: true
   server:
-    eviction-interval-timer-in-ms: 15000
+    eviction-interval-timer-in-ms: 30000
   instance:
     leaseRenewalIntervalInSeconds: 30
     leaseExpirationDurationInSeconds: 90

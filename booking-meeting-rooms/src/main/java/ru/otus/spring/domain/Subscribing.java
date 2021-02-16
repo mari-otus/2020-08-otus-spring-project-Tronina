@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 
 /**
@@ -26,7 +27,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "subscribings")
+@Table(name = "subscriptions",
+        uniqueConstraints = @UniqueConstraint(name = "subscriptions_uk", columnNames = {"room_id", "login", "delete_date"}))
 public class Subscribing {
 
     /**

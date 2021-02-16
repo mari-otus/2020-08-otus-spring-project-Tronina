@@ -11,11 +11,11 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:5002/eureka
+      defaultZone: http://localhost:5001/eureka
       register-with-eureka: true
       fetch-registry: true
   server:
-    eviction-interval-timer-in-ms: 15000
+    eviction-interval-timer-in-ms: 30000
   instance:
     leaseRenewalIntervalInSeconds: 30
     leaseExpirationDurationInSeconds: 90
@@ -39,11 +39,11 @@ feign:
   client:
     config:
       booking-users:
-        connectTimeout: 10000
-        readTimeout: 20000
+        connectTimeout: 30000
+        readTimeout: 30000
       booking-notification:
-        connectTimeout: 10000
-        readTimeout: 20000
+        connectTimeout: 30000
+        readTimeout: 30000
 
 hystrix:
   command:
@@ -60,5 +60,3 @@ hystrix:
         sleepWindowInMilliseconds: 5000
         errorThresholdPercentage: 50
       metrics.rollingStats.timeInMilliseconds: 10000
-
-
