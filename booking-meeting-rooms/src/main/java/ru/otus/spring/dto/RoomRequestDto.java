@@ -18,6 +18,9 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value = "Room.Request", description = "Запрос на создание переговорной комнаты")
 public class RoomRequestDto {
 
+    @ApiModelProperty(value = "Идентификатор переговорной комнаты")
+    private Long id;
+
     @NotBlank
     @ApiModelProperty(value = "Название переговорной комнаты", required = true)
     private String roomName;

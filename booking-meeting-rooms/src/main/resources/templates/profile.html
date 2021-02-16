@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Booking meeting rooms Application</title>
-</head>
+<head th:insert="header.html" />
 
 <body>
-
-<div th:insert="header.html"></div>
-
 <h1>Профиль</h1>
 <form id="edit-form">
     <div class="row">
@@ -29,12 +23,12 @@
     </div>
 
     <div class="row">
-        <button type="button" onclick="saveb()">Сохранить и выйти</button>
+        <button type="button" onclick="save()">Сохранить и выйти</button>
     </div>
 </form>
 
 <script>
-    function saveb() {
+    function save() {
         $.ajax({
             type: 'PUT',
             url: "/api/profiles",
@@ -46,7 +40,7 @@
             }),
             contentType: "application/json",
             success: function () {
-                document.location.href = "/";
+                document.location.href = "/index";
             },
             error: function (result) {
                 alert(result.responseJSON.message);

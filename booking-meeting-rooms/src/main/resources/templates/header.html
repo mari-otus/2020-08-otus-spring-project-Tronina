@@ -5,11 +5,16 @@
     <meta charset="utf-8"/>
     <title>Booking meeting rooms Application</title>
     <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
 <h1>Бронирование переговорных комнат</h1>
 <a th:href="@{/logout}">Выход</a>
-<a th:href="@{index}">Меню</a>
+<a th:href="@{/index}">Меню</a>
 <br/>
 <h3 th:text="'Пользователь: ' + ${#authentication.getPrincipal()?.fio}"></h3>
 </body>

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8"/>
-    <title>Booking meeting rooms Application</title>
-</head>
+<head th:insert="header.html" />
+
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
 <h1>Ошибка</h1>
 <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>

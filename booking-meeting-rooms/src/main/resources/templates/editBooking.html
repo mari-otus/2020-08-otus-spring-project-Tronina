@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Booking meeting rooms Application</title>
-</head>
+<head th:insert="header.html" />
 
 <body>
-
-<div th:insert="header.html"></div>
-
 <h1>Редактирование брони</h1>
 <form id="edit-form">
     <div class="row">
@@ -34,12 +28,12 @@
     </div>
 
     <div class="row">
-        <button type="button" th:onclick="'javascript:saveb('+${booking.id}+')'">Сохранить и выйти</button>
+        <button type="button" th:onclick="'javascript:save('+${booking.id}+')'">Сохранить и выйти</button>
     </div>
 </form>
 
 <script>
-    function saveb(id) {
+    function save(id) {
         var roomId = document.getElementById("room_name").value;
         var beginDate = document.getElementById("booking_begin").value;
         var endDate = document.getElementById("booking_end").value;

@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Booking meeting rooms Application</title>
-</head>
+<head th:insert="header.html" />
 
 <body>
-
-<div th:insert="header.html"></div>
-
 <h1>Редактирование переговорки</h1>
 <form id="edit-form">
     <div class="row">
@@ -35,12 +29,12 @@
                th:checked="${room.hasConditioner ? 'checked' : ''}"/>
     </div>
     <div class="row">
-        <button type="button" th:onclick="'javascript:saveb('+${room.id}+')'">Сохранить и выйти</button>
+        <button type="button" th:onclick="'javascript:save('+${room.id}+')'">Сохранить и выйти</button>
     </div>
 </form>
 
 <script>
-    function saveb(id) {
+    function save(id) {
         const room_name = document.getElementById("room_name").value;
         const capacity = document.getElementById("capacity").value;
         const hasVideoconference = $("#hasVideoconference").is(":checked");

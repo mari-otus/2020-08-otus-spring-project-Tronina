@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="utf-8"/>
-    <title>Booking meeting rooms Application</title>
-</head>
+<head th:insert="header.html" />
 
 <body>
-
-<div th:insert="header.html"></div>
-
 <h1>Список броней</h1>
 <table class="bookings" border="1">
     <thead>
@@ -19,6 +13,8 @@
         <th>Логин пользователя</th>
         <th>Дата и время начала брони</th>
         <th>Дата и время окончания брони</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -29,7 +25,7 @@
     <a href="/bookings/add">Добавить бронь</a>
 </td>
 <script>
-    function deleteb(id) {
+    function remove(id) {
         $.ajax({
             type: 'DELETE',
             url: `/api/bookings/${id}`,
@@ -75,7 +71,7 @@
                             <a href="/bookings/${booking.id}">Редактировать</a>
                         </td>
                         <td>
-                            <button type="button" onclick="deleteb(${booking.id})">Удалить</button>
+                            <button type="button" onclick="remove(${booking.id})">Удалить</button>
                         </td>
                     </tr>
                 `)
