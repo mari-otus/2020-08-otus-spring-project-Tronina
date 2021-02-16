@@ -12,12 +12,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
+ * Фильтр поиска переговорных комнат.
+ *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "Room.Filter", description = "Фильтр поиска переговорных комнат")
 public class RoomFilter {

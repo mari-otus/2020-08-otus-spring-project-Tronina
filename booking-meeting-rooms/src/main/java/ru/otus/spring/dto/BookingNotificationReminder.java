@@ -8,19 +8,33 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
+ * Напоминание о скором наступлении брони.
+ *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class BookingNotificationReminder {
 
+    /**
+     * Пользователь, которому направляется напоминание.
+     */
     private SubscriberDto subscriber;
 
+    /**
+     * Название переговорки.
+     */
     private String roomName;
 
+    /**
+     * Дата и время начала брони.
+     */
     private LocalDateTime beginBookingDate;
 
+    /**
+     * Дата и время окончания брони.
+     */
     private LocalDateTime endBookingDate;
 }

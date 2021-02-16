@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Репозиторий для работы с профилем пользователя.
+ * Репозиторий для работы с подписками пользователя.
  *
  * @author MTronina
  */
 public interface SubscribingRepository extends JpaRepository<Subscribing, Long> {
-
-    List<Subscribing> findAllByLoginEquals(String login);
 
     List<Subscribing> findAllByDeleteDateIsNull();
 

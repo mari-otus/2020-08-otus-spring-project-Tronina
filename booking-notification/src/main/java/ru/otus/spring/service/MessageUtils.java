@@ -2,7 +2,7 @@ package ru.otus.spring.service;
 
 import lombok.experimental.UtilityClass;
 import ru.otus.spring.model.BookingNotificationReminder;
-import ru.otus.spring.model.BookingNotify;
+import ru.otus.spring.model.BookingNotificationEvent;
 import ru.otus.spring.model.Subscriber;
 
 import java.text.MessageFormat;
@@ -26,7 +26,7 @@ public class MessageUtils {
                 );
     }
 
-    public String textCreate(BookingNotify message, Subscriber subscriber) {
+    public String textCreate(BookingNotificationEvent message, Subscriber subscriber) {
         return MessageFormat
                 .format("Уважаемый {0}, {1} была забронирована переговорка \"{2}\" на период с {3} по {4}. \r\n" +
                                 "Автор брони {5}.",
@@ -42,7 +42,7 @@ public class MessageUtils {
                 );
     }
 
-    public String textUpdate(BookingNotify message, Subscriber subscriber) {
+    public String textUpdate(BookingNotificationEvent message, Subscriber subscriber) {
         return MessageFormat
                 .format("Уважаемый {0}, {1} была изменена бронь переговорки \"{2}\". \r\n" +
                                 "Период брони с {3} по {4}. \r\n" +
@@ -59,7 +59,7 @@ public class MessageUtils {
                 );
     }
 
-    public String textDelete(BookingNotify message, Subscriber subscriber) {
+    public String textDelete(BookingNotificationEvent message, Subscriber subscriber) {
         return MessageFormat
                 .format("Уважаемый {0}, {1} была удалена бронь с переговорки \"{2}\" с {3} по {4}. \r\n" +
                                 "Автор изменений {5}.",

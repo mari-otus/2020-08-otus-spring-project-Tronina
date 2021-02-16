@@ -13,12 +13,14 @@ import ru.otus.spring.dto.UserDto;
 import java.time.LocalDateTime;
 
 /**
+ * Данные для аудита и статистики.
+ *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Document("bookings")
 public class BookingAudit {
 

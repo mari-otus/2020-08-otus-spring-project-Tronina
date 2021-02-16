@@ -13,9 +13,9 @@ import ru.otus.spring.dto.UserDto;
  *
  * @author MTronina
  */
-@RequiredArgsConstructor
 @Service
-public class    DbUserDetailsService implements UserDetailsService {
+@RequiredArgsConstructor
+public class DbUserDetailsService implements UserDetailsService {
     /**
      * Репозиторий для работы с пользователями.
      */

@@ -29,30 +29,25 @@ public class RoomController {
     private final RoomService roomService;
 
     @PostMapping("/rooms")
-    public ResponseEntity<Void> createRoom(
-            @RequestBody RoomRequestDto room) {
+    public ResponseEntity<Void> createRoom(@RequestBody RoomRequestDto room) {
         roomService.createRoom(room);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/rooms/{roomId}")
-    public ResponseEntity<Void> editRoom(
-            @PathVariable Long roomId,
-            @RequestBody RoomRequestDto room) {
+    public ResponseEntity<Void> editRoom(@PathVariable Long roomId, @RequestBody RoomRequestDto room) {
         roomService.updateRoom(roomId, room);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/rooms/{roomId}")
-    public ResponseEntity<List<RoomResponseDto>> deleteRoom(
-            @PathVariable Long roomId) {
+    public ResponseEntity<List<RoomResponseDto>> deleteRoom(@PathVariable Long roomId) {
         List<RoomResponseDto> rooms = roomService.deleteRoom(roomId);
         return ResponseEntity.ok(rooms);
     }
 
     @PostMapping("/rooms/search")
-    public ResponseEntity<List<RoomResponseDto>> getRooms(
-            @RequestBody RoomFilter roomFilter) {
+    public ResponseEntity<List<RoomResponseDto>> getRooms(@RequestBody RoomFilter roomFilter) {
         List<RoomResponseDto> rooms = roomService.getRooms(roomFilter);
         return ResponseEntity.ok(rooms);
     }

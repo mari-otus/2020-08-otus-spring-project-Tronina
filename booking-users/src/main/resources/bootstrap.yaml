@@ -27,8 +27,3 @@ management:
     web:
       expousure:
         include: "*"
-
-logging:
-  level:
-    ru.otus: debug
-    org.springframework: debug

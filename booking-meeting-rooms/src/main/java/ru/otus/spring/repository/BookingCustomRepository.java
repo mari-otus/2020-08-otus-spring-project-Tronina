@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
+ * Кастомный репозиторий для работы с бронями переговорной комнаты.
+ *
  * @author MTronina
  */
 public interface BookingCustomRepository {

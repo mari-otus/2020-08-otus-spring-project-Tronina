@@ -9,10 +9,10 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserRoleDto implements GrantedAuthority {
 
     /**

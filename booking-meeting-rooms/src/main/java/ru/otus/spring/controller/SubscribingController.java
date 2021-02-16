@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.otus.spring.domain.Subscribing;
 import ru.otus.spring.security.AuthUserDetails;
+import ru.otus.spring.security.AuthUtils;
 import ru.otus.spring.service.SubscribingService;
 
 import java.security.Principal;
@@ -29,19 +30,15 @@ public class SubscribingController {
     private final SubscribingService subscribingService;
 
     @PostMapping("/subscribing/rooms/{roomId}")
-    public ResponseEntity<Void> subscribeRoom(
-            @PathVariable Long roomId, Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+    public ResponseEntity<Void> subscribeRoom(@PathVariable Long roomId, Principal principal) {
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         subscribingService.subscribeRoom(roomId, userDetails);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/subscribing/rooms/{roomId}")
-    public ResponseEntity<Void> unsubscribeRoom(
-            @PathVariable Long roomId, Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+    public ResponseEntity<Void> unsubscribeRoom(@PathVariable Long roomId, Principal principal) {
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         subscribingService.unsubscribeRoom(roomId, userDetails);
         return ResponseEntity.ok().build();
     }

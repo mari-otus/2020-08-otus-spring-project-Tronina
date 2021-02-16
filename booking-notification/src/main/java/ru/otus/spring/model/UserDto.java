@@ -13,10 +13,10 @@ import java.util.Set;
  *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 
     /**
@@ -29,6 +29,9 @@ public class UserDto {
      */
     private String login;
 
+    /**
+     * Пароль пользователя.
+     */
     private String password;
 
     /**

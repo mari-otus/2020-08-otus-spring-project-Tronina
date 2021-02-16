@@ -12,7 +12,7 @@ import java.util.Optional;
  *
  * @author MTronina
  */
-public interface UserRepository extends JpaRepository<User, Long>, UserCustomRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByLogin(String login);
 

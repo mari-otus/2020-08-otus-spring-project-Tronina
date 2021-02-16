@@ -12,7 +12,6 @@ import ru.otus.spring.dto.UserDto;
 public interface UserMapper {
 
     UserDto toUserDto(User user);
-    User toUser(UserDto user);
     User toUser(UserCreateDto user);
 
 }

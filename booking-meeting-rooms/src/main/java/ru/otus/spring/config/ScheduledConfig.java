@@ -12,8 +12,8 @@ import ru.otus.spring.sheduled.SchedulerNotification;
 /**
  * @author MTronina
  */
-@EnableScheduling
 @Configuration
+@EnableScheduling
 @ConditionalOnProperty(value = "app.schedule.enabled", havingValue = "true")
 public class ScheduledConfig {
 

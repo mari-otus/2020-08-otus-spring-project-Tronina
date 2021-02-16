@@ -1,6 +1,7 @@
 package ru.otus.spring.validators;
 
 import org.hibernate.validator.internal.engine.constraintvalidation.CrossParameterConstraintValidatorContextImpl;
+import org.springframework.util.CollectionUtils;
 import ru.otus.spring.dto.BookingRequestDto;
 
 import javax.validation.ConstraintValidator;
@@ -18,8 +19,6 @@ import java.util.List;
 public class BookingValidator implements
         ConstraintValidator<BookingConstraint, Object[]> {
 
-    private static final String BOOKING_PARAM_NAME = "booking";
-
     @Override
     public void initialize(BookingConstraint constraintAnnotation) {
     }
@@ -36,12 +35,17 @@ public class BookingValidator implements
     public boolean isValid(Object[] value, ConstraintValidatorContext context) {
         List<String> parameters = ((CrossParameterConstraintValidatorContextImpl) context).getMethodParameterNames();
 
-        int bookingIndex = parameters.indexOf(BOOKING_PARAM_NAME);
-        if (bookingIndex != -1 && value[bookingIndex] != null) {
-            BookingRequestDto bookingRequestDto = (BookingRequestDto) value[bookingIndex];
-            if (bookingRequestDto.getBeginDate() != null && bookingRequestDto.getEndDate() != null) {
-                if (bookingRequestDto.getBeginDate().compareTo(bookingRequestDto.getEndDate()) >= 0) {
-                    return false;
+        if (CollectionUtils.isEmpty(parameters)) {
+            return true;
+        }
+
+        for (int i=0; i<value.length; i++) {
+            if (value[i] instanceof BookingRequestDto) {
+                BookingRequestDto bookingRequestDto = (BookingRequestDto) value[i];
+                if (bookingRequestDto.getBeginDate() != null && bookingRequestDto.getEndDate() != null) {
+                    if (bookingRequestDto.getBeginDate().compareTo(bookingRequestDto.getEndDate()) >= 0) {
+                        return false;
+                    }
                 }
             }
         }

@@ -16,10 +16,10 @@ import javax.persistence.Table;
 /**
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "roles")
 public class UserRole implements GrantedAuthority {

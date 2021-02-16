@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
+ * Роли пользователя.
+ *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserRoleDto implements GrantedAuthority {
 
     /**

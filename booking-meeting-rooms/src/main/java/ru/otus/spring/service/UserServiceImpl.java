@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserClient userClient;
 
-    @Transactional
     @Override
     public UserDto getUserByLogin(String login) {
         ResponseEntity<UserDto> response = userClient.getUserByLogin(login);

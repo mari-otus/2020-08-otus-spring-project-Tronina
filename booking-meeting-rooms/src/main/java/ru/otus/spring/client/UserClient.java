@@ -11,10 +11,9 @@ import ru.otus.spring.dto.UserDto;
  * @author MTronina
  */
 @FeignClient(name = "booking-users")
-@RequestMapping("/users")
 public interface UserClient {
 
-    @GetMapping("/{login}")
+    @GetMapping("/users/{login}")
     ResponseEntity<UserDto> getUserByLogin(@PathVariable String login);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.otus.spring.dto.ProfileDto;
 import ru.otus.spring.security.AuthUserDetails;
+import ru.otus.spring.security.AuthUtils;
 import ru.otus.spring.service.ProfileService;
 
 import java.security.Principal;
@@ -29,16 +30,14 @@ public class ProfileController {
 
     @GetMapping("/profiles")
     public ResponseEntity<ProfileDto> getProfile(Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         ProfileDto profile = profileService.getProfile(userDetails);
         return ResponseEntity.ok(profile);
     }
 
     @PostMapping("/profiles")
     public ResponseEntity<ProfileDto> createProfile(Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         ProfileDto profile = profileService.createProfile(userDetails);
         return ResponseEntity.ok(profile);
     }
@@ -46,8 +45,7 @@ public class ProfileController {
     @PutMapping("/profiles")
     public ResponseEntity<Void> editProfile(
             @RequestBody ProfileDto updateRequest, Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         profileService.updateProfile(updateRequest, userDetails);
         return ResponseEntity.ok().build();
     }

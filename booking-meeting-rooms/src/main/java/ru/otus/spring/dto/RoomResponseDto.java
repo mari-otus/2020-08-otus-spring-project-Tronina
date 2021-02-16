@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
+ * Ответ на получение переговорной комнаты.
+ *
  * @author MTronina
  */
 @Data

@@ -7,10 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.spring.config.NotificationProperties;
 import ru.otus.spring.model.BookingNotificationReminder;
-import ru.otus.spring.model.BookingNotify;
+import ru.otus.spring.model.BookingNotificationEvent;
 import ru.otus.spring.model.Subscriber;
 
 /**
+ * Сервис трансформации данных в sms-сообщение.
+ *
  * @author MTronina
  */
 @Service
@@ -20,21 +22,21 @@ public class TransformSmsMessageService implements TransformMessageService<Messa
     private final NotificationProperties notificationProperties;
 
     @Override
-    public MessageCreator[] transformEvent(BookingNotify bookingNotify) {
+    public MessageCreator[] transformEvent(BookingNotificationEvent bookingNotificationEvent) {
         Twilio.init(notificationProperties.getSms().getTwilioAccountSid(), notificationProperties.getSms().getTwilioAuthToken());
 
-        return bookingNotify.getSubscribers().stream()
+        return bookingNotificationEvent.getSubscribers().stream()
                 .filter(Subscriber::isPhoneNotify)
                 .map(profileUserDto -> {
                     MessageCreator message = new MessageCreator(new PhoneNumber(profileUserDto.getMobilePhone()),
                             new PhoneNumber(notificationProperties.getSms().getTwilioPhoneNumber()),
                             "");
-                    if (bookingNotify.getDeleteBookingDate() != null) {
-                        message.setBody(MessageUtils.textDelete(bookingNotify, profileUserDto));
-                    } else if (bookingNotify.getUpdateBookingDate() != null) {
-                        message.setBody(MessageUtils.textUpdate(bookingNotify, profileUserDto));
+                    if (bookingNotificationEvent.getDeleteBookingDate() != null) {
+                        message.setBody(MessageUtils.textDelete(bookingNotificationEvent, profileUserDto));
+                    } else if (bookingNotificationEvent.getUpdateBookingDate() != null) {
+                        message.setBody(MessageUtils.textUpdate(bookingNotificationEvent, profileUserDto));
                     } else {
-                        message.setBody(MessageUtils.textCreate(bookingNotify, profileUserDto));
+                        message.setBody(MessageUtils.textCreate(bookingNotificationEvent, profileUserDto));
                     }
                     return message;
                 })

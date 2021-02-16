@@ -1,4 +1,4 @@
-package ru.otus.spring.dto;
+package ru.otus.spring.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +22,7 @@ public class BookingNotificationEvent {
     /**
      * Список подписчиков на переговорку.
      */
-    private List<SubscriberDto> subscribers;
+    private List<Subscriber> subscribers;
 
     /**
      * Название переговорки.
@@ -58,4 +58,5 @@ public class BookingNotificationEvent {
      * Дата и время удаления записи (брони).
      */
     private LocalDateTime deleteBookingDate;
+
 }

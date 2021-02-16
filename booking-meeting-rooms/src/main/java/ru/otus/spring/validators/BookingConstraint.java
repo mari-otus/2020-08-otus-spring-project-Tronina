@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Помечает методы, у которых требуется проверить значения параметров mdmId и unc - заголовков HTTP.
+ * Помечает методы, у которых требуется проверить валидность дат у сущности BookingRequestDto.
  *
  * @author MTronina
  */

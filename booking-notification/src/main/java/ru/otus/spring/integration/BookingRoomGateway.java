@@ -4,7 +4,7 @@ import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.messaging.handler.annotation.Payload;
 import ru.otus.spring.model.BookingNotificationReminder;
-import ru.otus.spring.model.BookingNotify;
+import ru.otus.spring.model.BookingNotificationEvent;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import java.util.List;
 public interface BookingRoomGateway {
 
     @Gateway(requestChannel = "bookingRoomInEmailChannel")
-    void processEmailNotify(@Payload BookingNotify booking);
+    void processEmailNotify(@Payload BookingNotificationEvent booking);
 
     @Gateway(requestChannel = "bookingRoomInSmsChannel")
-    void processSmsNotify(@Payload BookingNotify booking);
+    void processSmsNotify(@Payload BookingNotificationEvent booking);
 
     @Gateway(requestChannel = "bookingRoomReminderInEmailChannel")
     void processEmailNotifyReminder(@Payload List<BookingNotificationReminder> booking);

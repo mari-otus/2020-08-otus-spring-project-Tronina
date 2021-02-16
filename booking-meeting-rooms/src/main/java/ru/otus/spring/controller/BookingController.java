@@ -17,6 +17,7 @@ import ru.otus.spring.dto.BookingFilter;
 import ru.otus.spring.dto.BookingRequestDto;
 import ru.otus.spring.dto.BookingResponseDto;
 import ru.otus.spring.security.AuthUserDetails;
+import ru.otus.spring.security.AuthUtils;
 import ru.otus.spring.service.BookingService;
 import ru.otus.spring.validators.BookingConstraint;
 
@@ -40,8 +41,7 @@ public class BookingController {
     @PostMapping("/bookings")
     public ResponseEntity<Void> createBookingRoom(
             @Valid @RequestBody BookingRequestDto booking, Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         bookingService.createBooking(booking, userDetails);
         return ResponseEntity.ok().build();
     }
@@ -52,8 +52,7 @@ public class BookingController {
             @PathVariable Long bookingId,
             @Valid @RequestBody BookingRequestDto booking,
             Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         bookingService.updateBooking(bookingId, booking, userDetails);
         return ResponseEntity.ok().build();
     }
@@ -62,8 +61,7 @@ public class BookingController {
     public ResponseEntity<List<BookingResponseDto>> deleteBookingRoom(
             @PathVariable Long bookingId,
             Principal principal) {
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthUserDetails userDetails = (AuthUserDetails) authenticationToken.getPrincipal();
+        AuthUserDetails userDetails = AuthUtils.getAuthUserDetails(principal);
         List<BookingResponseDto> bookings = bookingService.deleteBooking(bookingId, userDetails);
         return ResponseEntity.ok(bookings);
     }

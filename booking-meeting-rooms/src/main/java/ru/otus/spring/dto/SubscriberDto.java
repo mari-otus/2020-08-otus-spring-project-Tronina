@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Данные подписчика.
+ *
  * @author MTronina
  */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class SubscriberDto {
 
     private String fio;
@@ -20,8 +22,14 @@ public class SubscriberDto {
 
     private String mobilePhone;
 
+    /**
+     * Отправлять уведомления по email.
+     */
     private boolean isEmailNotify;
 
+    /**
+     * Отправлять уведомления по sms.
+     */
     private boolean isPhoneNotify;
 
 }

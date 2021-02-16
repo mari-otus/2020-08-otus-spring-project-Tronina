@@ -43,15 +43,13 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserDto> createUser(
-            @RequestBody UserCreateDto userDto) {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserCreateDto userDto) {
         UserDto userNew = userService.createUser(userDto);
         return ResponseEntity.ok(userNew);
     }
 
     @PutMapping("/users")
-    public ResponseEntity<UserDto> editUser(
-            @RequestBody UserUpdateDto userDto) {
+    public ResponseEntity<UserDto> editUser(@RequestBody UserUpdateDto userDto) {
         userService.editUser(userDto);
         return ResponseEntity.ok().build();
     }

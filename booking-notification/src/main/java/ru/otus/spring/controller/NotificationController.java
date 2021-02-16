@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.otus.spring.integration.BookingRoomGateway;
 import ru.otus.spring.model.BookingNotificationReminder;
-import ru.otus.spring.model.BookingNotify;
+import ru.otus.spring.model.BookingNotificationEvent;
 
 import java.util.List;
 
@@ -23,13 +23,13 @@ public class NotificationController {
     /**
      * Отправляет уведомления действиях с переговорными комнатами (изменение, удаление, создание брони).
      *
-     * @param bookingNotify данные о брони
+     * @param bookingNotificationEvent данные о брони
      * @return
      */
     @PostMapping("/notification/event")
-    public ResponseEntity<Void> notifyEvent(@RequestBody BookingNotify bookingNotify) {
-        bookingRoomGateway.processEmailNotify(bookingNotify);
-        bookingRoomGateway.processSmsNotify(bookingNotify);
+    public ResponseEntity<Void> notifyEvent(@RequestBody BookingNotificationEvent bookingNotificationEvent) {
+        bookingRoomGateway.processEmailNotify(bookingNotificationEvent);
+        bookingRoomGateway.processSmsNotify(bookingNotificationEvent);
         return ResponseEntity.ok().build();
     }
 

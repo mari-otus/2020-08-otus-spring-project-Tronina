@@ -9,12 +9,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
 /**
+ * Запрос на создание/изменение брони.
+ *
  * @author MTronina
  */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class BookingRequestDto {
 
     private Long id;

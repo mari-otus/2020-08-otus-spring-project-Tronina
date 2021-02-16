@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
+ * Фильтр поиска броней.
+ *
  * @author MTronina
  */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingFilter {
 
@@ -27,10 +29,13 @@ public class BookingFilter {
 
     private Period endBooking;
 
+    /**
+     * Временной период.
+     */
     @Data
     @Builder
-    @AllArgsConstructor
     @NoArgsConstructor
+    @AllArgsConstructor
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class Period {
 

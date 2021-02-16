@@ -15,17 +15,18 @@
     <thead>
     <tr>
         <th>id</th>
-        <th>roomName</th>
-        <th>login</th>
-        <th>beginDate</th>
-        <th>endDate</th>
+        <th>Название комнаты</th>
+        <th>Логин пользователя</th>
+        <th>Дата и время начала брони</th>
+        <th>Дата и время окончания брони</th>
     </tr>
     </thead>
     <tbody>
     </tbody>
 </table>
+<br/>
 <td>
-    <a href="/bookings/add">add</a>
+    <a href="/bookings/add">Добавить бронь</a>
 </td>
 <script>
     function deleteb(id) {
@@ -71,10 +72,10 @@
                         <td>${new Date(booking.beginDate).toLocaleString("ru-RU")}</td>
                         <td>${new Date(booking.endDate).toLocaleString("ru-RU")}</td>
                         <td>
-                            <a href="/bookings/${booking.id}">edit</a>
+                            <a href="/bookings/${booking.id}">Редактировать</a>
                         </td>
                         <td>
-                            <button type="button" onclick="deleteb(${booking.id})">delete</button>
+                            <button type="button" onclick="deleteb(${booking.id})">Удалить</button>
                         </td>
                     </tr>
                 `)

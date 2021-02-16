@@ -20,10 +20,10 @@ import java.time.LocalDateTime;
  *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "rooms",
         uniqueConstraints = @UniqueConstraint(name = "rooms_uk", columnNames = {"room_name", "delete_date"}))

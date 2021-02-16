@@ -13,10 +13,10 @@ import java.util.Set;
  *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 
     /**

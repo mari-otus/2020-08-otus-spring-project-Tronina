@@ -22,10 +22,10 @@ import java.time.LocalDateTime;
  *
  * @author MTronina
  */
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "subscriptions",
         uniqueConstraints = @UniqueConstraint(name = "subscriptions_uk", columnNames = {"room_id", "login", "delete_date"}))

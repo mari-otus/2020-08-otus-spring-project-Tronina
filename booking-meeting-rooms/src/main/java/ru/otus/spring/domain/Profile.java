@@ -17,11 +17,11 @@ import javax.persistence.Table;
  *
  * @author MTronina
  */
-@Builder
 @Data
-@Entity
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity
 @Table(name = "profiles")
 public class Profile {
 

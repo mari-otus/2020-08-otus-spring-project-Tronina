@@ -17,8 +17,8 @@ import ru.otus.spring.service.RoomService;
  *
  * @author MTronina
  */
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 public class UIController {
 
     private final BookingService bookingService;
@@ -26,12 +26,42 @@ public class UIController {
 
     /**
      * Переход на главную страницу.
-     *
-     * @return view name.
      */
     @GetMapping("/")
     public String home() {
         return "home";
+    }
+
+    /**
+     * Переход в Меню.
+     */
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    /**
+     * Переход в Список броней.
+     */
+    @GetMapping("/bookings")
+    public String getBookings() {
+        return "bookings";
+    }
+
+    /**
+     * Переход в Переговорки.
+     */
+    @GetMapping("/rooms")
+    public String getRooms() {
+        return "rooms";
+    }
+
+    /**
+     * Переход в Профиль.
+     */
+    @GetMapping("/profiles")
+    public String getProfile() {
+        return "profile";
     }
 
     @GetMapping("/bookings/{id}")
@@ -70,26 +100,6 @@ public class UIController {
     public String addRoom(Model model) {
         model.addAttribute("room", new RoomRequestDto());
         return "editRoom";
-    }
-
-    @GetMapping("/bookings")
-    public String getBookings() {
-        return "bookings";
-    }
-
-    @GetMapping("/rooms")
-    public String getRooms() {
-        return "rooms";
-    }
-
-    @GetMapping("/profiles")
-    public String getProfile() {
-        return "profile";
-    }
-
-    @GetMapping("/index")
-    public String index() {
-        return "index";
     }
 
 }

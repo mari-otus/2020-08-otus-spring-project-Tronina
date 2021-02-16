@@ -9,9 +9,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 /**
  * @author MTronina
  */
+@EnableEurekaClient
 @EnableCircuitBreaker
 @EnableAspectJAutoProxy
-@EnableEurekaClient
 @SpringBootApplication
 public class BookingApplication {
 
