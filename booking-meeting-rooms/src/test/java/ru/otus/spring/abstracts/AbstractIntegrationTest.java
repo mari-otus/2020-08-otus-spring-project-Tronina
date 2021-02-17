@@ -30,21 +30,16 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 @ContextConfiguration(classes = {AbstractIntegrationTest.LocalRibbonClientConfiguration.class})
 public abstract class AbstractIntegrationTest {
 
+    @Rule
+    public static final WireMockServer mockServer = new WireMockServer(wireMockConfig().dynamicPort());
+
     @Autowired
     protected MockMvc mvc;
 
-    protected static final int TIMEOUT = 1000;
-
     @DynamicPropertySource
     public static void registerProperties(DynamicPropertyRegistry registry) {
-        //registry.add("feign.client.config.account.connectTimeout", () -> TIMEOUT);
-        //registry.add("feign.client.config.account.readTimeout", () -> TIMEOUT);
-        registry.add("app.schedule.enabled", () -> false);
         registry.add("mockServerURL", mockServer::baseUrl);
     }
-
-    @Rule
-    public static final WireMockServer mockServer = new WireMockServer(wireMockConfig().dynamicPort());
 
     @BeforeAll
     static void init() {
