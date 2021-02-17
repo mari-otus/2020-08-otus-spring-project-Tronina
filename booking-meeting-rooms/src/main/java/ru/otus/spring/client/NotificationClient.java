@@ -4,7 +4,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import ru.otus.spring.config.FeignAuthConfig;
 import ru.otus.spring.dto.BookingNotificationEvent;
 import ru.otus.spring.dto.BookingNotificationReminder;
 
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * @author MTronina
  */
-@FeignClient(name = "booking-notification", configuration = FeignAuthConfig.class)
+@FeignClient(name = "booking-notification")
 public interface NotificationClient {
 
     @PostMapping("/notification/event")
