@@ -16,6 +16,7 @@
 <a th:href="@{/logout}">Выход</a>
 <a th:href="@{/index}">Меню</a>
 <br/>
-<h3 th:text="'Пользователь: ' + ${#authentication.getPrincipal()?.fio}"></h3>
+<h3 th:text="'Пользователь: ' + ${#authentication.getPrincipal()?.fio}
++ ' (' + ${#authentication.getPrincipal()?.username} + ')'"></h3>
 </body>
 </html>

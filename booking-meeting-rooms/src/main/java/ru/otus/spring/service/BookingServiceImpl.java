@@ -117,8 +117,9 @@ public class BookingServiceImpl implements BookingService {
     @Transactional(readOnly = true)
     @Override
     public List<BookingResponseDto> getSoonStartingBookings(long minutes) {
-        return bookingRepository.findAllByDeleteDateIsNullAndBeginDateBetween(LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(minutes))
+        return bookingRepository.findAllByDeleteDateIsNullAndBeginDateBetween(
+                LocalDateTime.now().minusMinutes(1),
+                LocalDateTime.now().plusMinutes(minutes + 1))
                 .stream()
                 .map(mapper::toBookingDto)
                 .collect(Collectors.toList());
