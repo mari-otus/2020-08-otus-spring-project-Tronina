@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header.html" />
+
+<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<h1>Ошибка</h1>
+<p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+<a th:href="@{/}">На главную</a>
+<br>
+</body>
+</html>

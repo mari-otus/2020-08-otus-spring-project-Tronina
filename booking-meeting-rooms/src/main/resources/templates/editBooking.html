@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header.html" />
+
+<body>
+<h1>Редактирование брони</h1>
+<form id="edit-form">
+    <div class="row">
+        <label for="room_name">Название переговорки:</label>
+        <select id="room_name" th:field="*{booking.roomId}">
+            <option th:each="room : ${rooms}"
+                    th:value="${room.id}"
+                    th:text="${room.roomName}"></option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="booking_begin">Дата начала брони:</label>
+        <input id="booking_begin" name="beginDate" type="datetime-local"
+               th:field="${booking.beginDate}"/>
+    </div>
+
+
+    <div class="row">
+        <label for="booking_end">Дата окончания брони:</label>
+        <input id="booking_end" name="endDate" type="datetime-local"
+               th:field="${booking.endDate}"/>
+    </div>
+
+    <div class="row">
+        <button type="button" th:onclick="'javascript:save('+${booking.id}+')'">Сохранить и выйти</button>
+    </div>
+</form>
+
+<script>
+    function save(id) {
+        var roomId = document.getElementById("room_name").value;
+        var beginDate = document.getElementById("booking_begin").value;
+        var endDate = document.getElementById("booking_end").value;
+        var beginDateZ = new Date(beginDate);
+        beginDateZ.setTime(beginDateZ.getTime() - beginDateZ.getTimezoneOffset() * 60 * 1000);
+        var endDateZ = new Date(endDate);
+        endDateZ.setTime(endDateZ.getTime() - endDateZ.getTimezoneOffset() * 60 * 1000);
+        let type = 'POST';
+        let url = '/api/bookings/';
+        if (id !== null) {
+            type = 'PUT';
+            url = url + id;
+        }
+        $.ajax({
+            type: type,
+            url: url,
+            data: JSON.stringify({
+                "roomId": roomId,
+                "beginDate": beginDateZ,
+                "endDate": endDateZ
+            }),
+            contentType: "application/json",
+            success: function () {
+                document.location.href = "/bookings";
+            },
+            error: function (result) {
+                alert(result.responseJSON.message);
+            }
+        });
+    }
+</script>
+</body>
+</html>

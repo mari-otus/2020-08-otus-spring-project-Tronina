@@ -1,0 +1,8 @@
+/.idea/
+*/target/
+/config-server/config-server.iml
+/booking-meeting-rooms/booking-meeting-rooms.iml
+/eureka-discovery-server/eureka-discovery-server.iml
+/booking-users/booking-users.iml
+/booking-notification/booking-notification.iml
+/.env

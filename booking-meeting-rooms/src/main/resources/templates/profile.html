@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header.html" />
+
+<body>
+<h1>Профиль</h1>
+<form id="edit-form">
+    <div class="row">
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="text"/>
+    </div>
+    <div class="row">
+        <label for="mobilePhone">Номер сотового телефона:</label>
+        <input id="mobilePhone" name="mobilePhone" type="text"/>
+    </div>
+    <div class="row">
+        <label for="isEmailNotify">Отправлять уведомления на email:</label>
+        <input id="isEmailNotify" name="isEmailNotify" type="checkbox"/>
+    </div>
+    <div class="row">
+        <label for="isPhoneNotify">Отправлять уведомления по sms:</label>
+        <input id="isPhoneNotify" name="isPhoneNotify" type="checkbox"/>
+    </div>
+
+    <div class="row">
+        <button type="button" onclick="save()">Сохранить и выйти</button>
+    </div>
+</form>
+
+<script>
+    function save() {
+        $.ajax({
+            type: 'PUT',
+            url: "/api/profiles",
+            data: JSON.stringify({
+                "email": $("#email").val(),
+                "mobilePhone": $("#mobilePhone").val(),
+                "emailNotify": $("#isEmailNotify").is(":checked"),
+                "phoneNotify": $("#isPhoneNotify").is(":checked")
+            }),
+            contentType: "application/json",
+            success: function () {
+                document.location.href = "/index";
+            },
+            error: function (result) {
+                alert(result.responseJSON.message);
+            }
+        });
+    }
+
+    $(function () {
+        $.ajax({
+            type: 'GET',
+            url: "/api/profiles",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (profile) {
+                $('#email').attr("value", `${profile.email}`);
+                $('#mobilePhone').attr("value", `${profile.mobilePhone}`);
+                if (profile.emailNotify) {
+                    $('#isEmailNotify').attr("checked", "checked");
+                }
+                if (profile.phoneNotify) {
+                    $('#isPhoneNotify').attr("checked", "checked");
+                }
+            },
+            error: function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/profiles",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (profile) {
+                        $('#email').attr("value", `${profile.email}`);
+                        $('#mobilePhone').attr("value", `${profile.mobilePhone}`);
+                        if (profile.emailNotify) {
+                            $('#isEmailNotify').attr("checked", "checked");
+                        }
+                        if (profile.phoneNotify) {
+                            $('#isPhoneNotify').attr("checked", "checked");
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

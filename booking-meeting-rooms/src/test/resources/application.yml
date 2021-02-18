@@ -1,0 +1,17 @@
+spring:
+  flyway:
+    enabled: false
+
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+app:
+  audit:
+    enabled: false
+  notify:
+    enabled: false
+  schedule:
+    enabled: false
+
+

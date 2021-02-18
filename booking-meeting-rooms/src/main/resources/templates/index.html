@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header.html" />
+
+<body>
+<h2>Меню</h2>
+<a th:href="@{bookings}">Список броней</a>
+<br>
+<a th:href="@{rooms}">Переговорки</a>
+<br>
+<a th:href="@{profiles}">Профиль</a>
+<br>
+<a href="http://localhost:9003/swagger-ui.html" target="_blank">Управление пользователями</a>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header.html" />
+
+<body>
+<h1>Переговорки</h1>
+<table class="rooms" border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Название комнаты</th>
+        <th>Вместимость (человек)</th>
+        <th>Наличие кондиционера</th>
+        <th>Наличие видеоконференцсвязи</th>
+        <th>Наличие подписки</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<br/>
+<td>
+    <a href="/rooms/add">Добавить комнату</a>
+</td>
+
+<script>
+    function subscribe(id) {
+        $.ajax({
+            type: 'POST',
+            url: `/api/subscribing/rooms/${id}`,
+            data: id,
+            contentType: "application/json",
+            error: function (result) {
+                alert(result.responseJSON.message);
+            },
+            success: function () {
+                $('tbody').empty();
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/rooms/search",
+                    data: JSON.stringify({}),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (rooms) {
+                        appendTbody(rooms);
+                    }
+                });
+            }
+        });
+    }
+
+    function unsubscribe(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/api/subscribing/rooms/${id}`,
+            data: id,
+            contentType: "application/json",
+            error: function (result) {
+                alert(result.responseJSON.message);
+            },
+            success: function () {
+                $('tbody').empty();
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/rooms/search",
+                    data: JSON.stringify({}),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (rooms) {
+                        appendTbody(rooms);
+                    }
+                });
+            }
+        });
+    }
+
+    function remove(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/api/rooms/${id}`,
+            data: id,
+            contentType: "application/json",
+            error: function (result) {
+                alert(result.responseJSON.message);
+            },
+            success: function (rooms) {
+                $('tbody').empty();
+                appendTbody(rooms);
+            }
+        });
+    }
+
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: "/api/rooms/search",
+            data: JSON.stringify({}),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (rooms) {
+                appendTbody(rooms);
+            }
+        });
+
+    });
+
+    function appendTbody(rooms) {
+        rooms.forEach(function (room) {
+            $('tbody').append(`
+                    <tr>
+                        <td>${room.id}</td>
+                        <td>${room.roomName}</td>
+                        <td>${room.capacity}</td>
+                        <td>${room.hasConditioner}</td>
+                        <td>${room.hasVideoconference}</td>
+                        <td>${room.hasSubscribe}</td>
+                        <td>
+                            <a href="/rooms/${room.id}">Редактировать</a>
+                        </td>
+                        <td>
+                            <button type="button" onclick="remove(${room.id})">Удалить</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="subscribe(${room.id})" ${room.hasSubscribe ? ' disabled' : ''}>Подписаться</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="unsubscribe(${room.id})" ${!room.hasSubscribe ? ' disabled' : ''}>Отписаться</button>
+                        </td>
+                        <td>
+                            <a href="/bookings/add/${room.id}">Забронировать</a>
+                        </td>
+                    </tr>
+                `)
+        });
+    }
+</script>
+</body>
+</html>
